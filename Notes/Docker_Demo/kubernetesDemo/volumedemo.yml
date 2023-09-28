@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-with-vol
+  labels:
+    name: myapp-with-vol
+spec:
+  containers:
+  - name: myapp-nginx-vol
+    image: nginx
+    volumeMounts:
+    - mountPath: /mounted-data
+      name: data-volume
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+  volumes:
+  - name: data-volume
+    emptyDir: {}
+    

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    name: my-pod
+spec:
+  containers:
+  - name: my-pod-nginx
+    image: nginx
+
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  - name: my-pod-centos
+    image: centos
+    command: ["/bin/sh","-c","while : ; do curl http://localhost:80/; sleep 10; done;"]
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    

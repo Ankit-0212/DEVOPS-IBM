@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-with-vol-2
+  labels:
+    name: myapp-with-vol-2
+spec:
+  containers:
+  - name: myapp-ubuntu-vol
+    image: ubuntu:latest
+    command: ['/bin/bash','-ec','sleep 3600']
+    volumeMounts:
+    - mountPath: /mounted-data-1
+      name: data-volume
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+  - name: myapp-ubuntu-vol-2
+    image: ubuntu:latest
+    command: ['/bin/bash','-ec','sleep 3600']
+    volumeMounts:
+    - mountPath: /mounted-data-2
+      name: data-volume
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+  - name: myapp-ubuntu-vol-3
+    image: ubuntu:latest
+    command: ['/bin/bash','-ec','sleep 3600']
+    volumeMounts:
+    - mountPath: /mounted-data-3
+      name: data-volume
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+
+  volumes:
+  - name: data-volume
+    emptyDir: {}
+    
